@@ -1,0 +1,12 @@
+development:
+  clients:
+    default:
+      database: mongoid
+      hosts:
+        - MONGODB_PATH
+production:
+  clients:
+    default:
+      database: mongoid
+      hosts:
+        - MONGODB_PATH
