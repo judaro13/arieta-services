@@ -11,20 +11,26 @@ File.write("mongoid_conf.yml", data)
 Mongoid.load! "mongoid_conf.yml"
 
 
-class BaseModel
-  include Mongoid::Document
-  include Mongoid::Attributes::Dynamic
-end
+puts ENV
+
 
 App = Syro.new do
+  get do
+    res.write "Active service"
+  end
+
   on :table do
     post do
       table = (inbox[:table]).capitalize
-      klass = Class.new(BaseModel) do
+      klass = Class.new do
+        include Mongoid::Document
+        include Mongoid::Timestamps
+        include Mongoid::Attributes::Dynamic
       end
       Object.const_set table, klass
+      klass.store_in({collection: (inbox[:table]).downcase.pluralize})
 
-      message = "data stored at table #{inbox[:table]}"
+      message = "data stored at table '#{inbox[:table]}'"
 
       begin
         data = JSON.parse(req.body.read)
@@ -35,13 +41,9 @@ App = Syro.new do
         message = e.message
       end
 
-      res.write "stored in db"
+      res.write message
     end
   end
 end
 
 run App
-
-
-
-# curl -H "Content-Type: application/json" -X POST -d '[{"a":"xyz","b":"xyz"},{"a":"xyz","b":"xyz"}]' http://localhost:9292/miTabla

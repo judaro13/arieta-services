@@ -2,4 +2,5 @@ source 'https://rubygems.org'
 
 gem "syro"
 gem "pry"
+gem "bson"
 gem 'mongoid', '~> 6.1.0'
