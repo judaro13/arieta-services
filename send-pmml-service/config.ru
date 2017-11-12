@@ -30,6 +30,10 @@ end
 
 
 App = Syro.new do
+  get do
+    res.write "active service"
+  end
+  
   post do
     message = ""
     begin

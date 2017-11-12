@@ -3,9 +3,9 @@
 ## How to run
 
 ```
-docker build -t judaro13/kafka-o-analytic-service .
+docker build -t judaro13/kafka-to-analytic-service:latest .
 
-docker run -d -p 3001:3000 judaro13/kafka-o-analytic-service
+docker run -d -p 3001:3000 judaro13/kafka-to-analytic-service
 ```
 
 Visit https://localhost:3000/

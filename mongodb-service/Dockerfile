@@ -20,6 +20,6 @@ COPY config.ru /usr/app/
 
 RUN bundle install
 
-# EXPOSE 9292
+EXPOSE 9292
 
 CMD ["rackup"]

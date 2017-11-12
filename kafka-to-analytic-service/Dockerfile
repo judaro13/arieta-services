@@ -15,11 +15,11 @@ RUN mkdir /usr/app
 RUN mkdir /usr/app/public
 WORKDIR /usr/app
 
-COPY server/Gemfile /usr/app/
-COPY server/Gemfile.lock /usr/app/
-COPY server/api.rb /usr/app/
-COPY server/public/ /usr/app/public
+COPY Gemfile /usr/app/
+COPY Gemfile.lock /usr/app/
+COPY service.rb /usr/app/
 
 RUN bundle install
+EXPOSE 3000
 
-CMD ["ruby", "api.rb"]
+CMD ["ruby", "service.rb"]

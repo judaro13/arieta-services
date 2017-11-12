@@ -24,11 +24,14 @@ The data must be an array of hashes.
 ```
 docker build -t judaro13/mongodb-service .
 
-docker run -d -p 9292:3000 -e "db_path=localhost:27017" judaro13/mongodb-service  
+docker run --net="host" -p 9292:9292 -d -e "db_path=localhost:27017" judaro13/mongodb-service
 ```
 
-Execute post to https://localhost:3000/
-
-
 docker container ls
+Execute post to  with correct port https://localhost:3000/
+
+
 docker stop conatiner id
+
+
+{"db_path"=>"http://localhost:27017"}
